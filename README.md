@@ -2,11 +2,11 @@
 
 ## PRÁCTICA 7: Buses de comunicación 3 (I2S)
 
-### Objetivo:
+## Objetivo:
 
 El objetivo del código es reproducir un archivo de audio codificado en formato AAC desde la memoria flash del microcontrolador utilizando una biblioteca de audio específica. A continuación, se detallan los componentes y el flujo del programa.
 
-### Bibliotecas incluidas
+## Bibliotecas incluidas:
 
 Arduino.h: Esta es la biblioteca principal para programar en Arduino. Proporciona las definiciones básicas y funciones esenciales para trabajar con la plataforma Arduino.
 
@@ -18,13 +18,13 @@ AudioFileSourcePROGMEM.h: Esta biblioteca permite que el audio se lea desde la m
 
 sampleaac.h: Este archivo debe contener los datos del archivo de audio en formato AAC codificados en un array en PROGMEM.
 
-### Variables 
+## Variables: 
 
 in: Un puntero a un objeto AudioFileSourcePROGMEM que se utiliza para leer el archivo de audio desde la memoria flash.
 aac: Un puntero a un objeto AudioGeneratorAAC que se utiliza para decodificar el archivo de audio AAC.
 out: Un puntero a un objeto AudioOutputI2S que se utiliza para enviar el audio decodificado a través del protocolo I2S.
 
-### Función setup()
+## Función setup():
 
 La función setup() se ejecuta una vez al iniciar el programa y se utiliza para configurar el entorno y las variables necesarias para la reproducción del audio.
 
@@ -40,7 +40,7 @@ out = new AudioOutputI2S(): Crea un nuevo objeto AudioOutputI2S para manejar la 
 
 aac->begin(in, out): Inicia la decodificación y reproducción del audio utilizando los objetos creados.
 
-### Función loop()
+## Función loop()
 
 La función loop() se ejecuta repetidamente en un bucle infinito y es responsable de mantener la reproducción del audio y manejar el final de la misma.
 
@@ -50,9 +50,10 @@ else: Si el decodificador de audio ha terminado la reproducción:
 Serial.printf("AAC done\n"): Envía un mensaje a través del puerto serie indicando que la reproducción del audio ha terminado.
 delay(1000): Introduce una pausa de 1 segundo antes de continuar el bucle, para evitar que el mensaje se envíe continuamente.
 
-### Resumen
+## Resumen
 
-El código está diseñado para reproducir un archivo de audio AAC almacenado en la memoria flash del microcontrolador utilizando la plataforma Arduino. Se inicializan los componentes necesarios en la función setup(), y la reproducción se gestiona dentro de la función loop(). La salida de audio se realiza a través del protocolo I2S, permitiendo que el audio decodificado se envíe a un DAC o amplificador conectado.
+El código está diseñado para reproducir un archivo de audio AAC almacenado en la memoria flash del microcontrolador utilizando la plataforma Arduino (salida de audio I2S) . Se inicializan los componentes necesarios en la función setup(), y la reproducción se gestiona dentro de la función loop(). La salida de audio se realiza a través del protocolo I2S, permitiendo que el audio decodificado se envíe a un DAC o amplificador conectado.
+
 
 ### CÓDIGO:
 ```cpp
