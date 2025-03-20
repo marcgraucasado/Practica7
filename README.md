@@ -21,7 +21,9 @@ sampleaac.h: Este archivo debe contener los datos del archivo de audio en format
 ## Variables: 
 
 in: Un puntero a un objeto AudioFileSourcePROGMEM que se utiliza para leer el archivo de audio desde la memoria flash.
+
 aac: Un puntero a un objeto AudioGeneratorAAC que se utiliza para decodificar el archivo de audio AAC.
+
 out: Un puntero a un objeto AudioOutputI2S que se utiliza para enviar el audio decodificado a través del protocolo I2S.
 
 ## Función setup():
@@ -45,9 +47,13 @@ aac->begin(in, out): Inicia la decodificación y reproducción del audio utiliza
 La función loop() se ejecuta repetidamente en un bucle infinito y es responsable de mantener la reproducción del audio y manejar el final de la misma.
 
 if (aac->isRunning()): Comprueba si el decodificador de audio está en funcionamiento.
+
 aac->loop(): Si está en funcionamiento, llama a la función loop() del objeto aac para continuar la decodificación y reproducción del audio.
+
 else: Si el decodificador de audio ha terminado la reproducción:
+
 Serial.printf("AAC done\n"): Envía un mensaje a través del puerto serie indicando que la reproducción del audio ha terminado.
+
 delay(1000): Introduce una pausa de 1 segundo antes de continuar el bucle, para evitar que el mensaje se envíe continuamente.
 
 ## Resumen:
