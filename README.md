@@ -63,25 +63,31 @@ El código está diseñado para reproducir un archivo de audio AAC almacenado en
 
 ### CÓDIGO:
 ```cpp
+// Inclou les llibreries necessàries per a generar àudio, llegir fitxers i comunicar-se via I2S
     #include <Arduino.h>
     #include "AudioGeneratorAAC.h"
     #include "AudioOutputI2S.h"
     #include "AudioFileSourcePROGMEM.h"
     #include "sampleaac.h"
 
-    AudioFileSourcePROGMEM *in;
-    AudioGeneratorAAC *aac;
-    AudioOutputI2S *out;
+    // Declaració d'objectes globals
+    AudioFileSourcePROGMEM *in; // Font d'àudio des de la memòria flash
+    AudioGeneratorAAC *aac; // Descodificador AAC
+    AudioOutputI2S *out; // Sortida d'àudio per I2S (altaveus/DAC)
 
+// Inicialitza la comunicació sèrie per a depuració
     void setup()
     {
     Serial.begin(115200);
 
     audioLogger = &Serial;
+// Configura la font d'àudio amb les dades AAC emmagatzemades a la memòria flash
     in = new AudioFileSourcePROGMEM(sampleaac, sizeof(sampleaac));
+// Inicialitza el descodificador AAC i la sortida I2S
     aac = new AudioGeneratorAAC();
     out = new AudioOutputI2S();
 
+// Inicia la reproducció: descodifica AAC i envia a la sortida I2S
     aac->begin(in, out);
     }
 
